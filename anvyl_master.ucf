@@ -1,0 +1,238 @@
+#Unofficial Anvly Rev.B Master UCF 
+#I couldn't find a master UCF for the Digilent Anvyl development board, so I created one
+#Beware this may be incorrect, use at your own risk.
+#
+#James Saffer
+# 
+
+NET "CLK" TNM_NET = sys_clk_pin;
+TIMESPEC TS_sys_clk_pin = PERIOD sys_clk_pin 100000 kHz;
+NET CLK LOC=D11	|	IOSTANDARD=LVCMOS33;
+#NET RESET LOC = "AB9"  |  IOSTANDARD = "LVCMOS33"  |  TIG;  #this is button 3
+
+#this was set in the middle of the Anvly sample project
+VCCAUX= 3.3;
+
+#SW0 - SW7 switches
+NET "sw<0>" LOC ="V5"	| IOSTANDARD = LVCMOS33;
+NET "sw<1>" LOC ="U4"	| IOSTANDARD = LVCMOS33;
+NET "sw<2>" LOC ="V3"	| IOSTANDARD = LVCMOS33;
+NET "sw<3>" LOC ="P4"	| IOSTANDARD = LVCMOS33;
+NET "sw<4>" LOC ="R4"	| IOSTANDARD = LVCMOS33;
+NET "sw<5>" LOC ="P6"	| IOSTANDARD = LVCMOS33;
+NET "sw<6>" LOC ="P5"	| IOSTANDARD = LVCMOS33;
+NET "sw<7>" LOC ="P8"	| IOSTANDARD = LVCMOS33;
+
+#LEDs above slide switches
+NET "ld<0>" LOC ="W3"	| IOSTANDARD = LVCMOS18;
+NET "ld<1>" LOC ="Y4"	| IOSTANDARD = LVCMOS18;
+NET "ld<2>" LOC ="Y1"	| IOSTANDARD = LVCMOS18;
+NET "ld<3>" LOC ="Y3"	| IOSTANDARD = LVCMOS18;
+NET "ld<4>" LOC ="AB4"	| IOSTANDARD = LVCMOS18;
+NET "ld<5>" LOC ="W1"	| IOSTANDARD = LVCMOS18;
+NET "ld<6>" LOC ="AB3"	| IOSTANDARD = LVCMOS18;
+NET "ld<7>" LOC ="AA4"	| IOSTANDARD = LVCMOS18;
+
+#DIP switch bank A AKA SW8
+NET "dipa<0>" LOC ="G6"	| IOSTANDARD = LVCMOS33;# DIPA-1
+NET "dipa<1>" LOC ="G4"	| IOSTANDARD = LVCMOS33;# DIPA-2
+NET "dipa<2>" LOC ="F5"	| IOSTANDARD = LVCMOS33;# DIPA-3
+NET "dipa<3>" LOC ="E5"	| IOSTANDARD = LVCMOS33;# DIPA-4
+#DIP switch bank B AKA SW9
+NET "dipb<0>" LOC ="F8"	| IOSTANDARD = LVCMOS33;# DIPB-1
+NET "dipb<1>" LOC ="F7"	| IOSTANDARD = LVCMOS33;# DIPB-2
+NET "dipb<2>" LOC ="C4"	| IOSTANDARD = LVCMOS33;# DIPB-3
+NET "dipb<3>" LOC ="D3"	| IOSTANDARD = LVCMOS33;# DIPB-4
+
+#push buttons below colored LEDs
+NET "btn<0>" LOC="E6"| IOSTANDARD = LVCMOS18;# 
+NET "btn<1>" LOC="D5"| IOSTANDARD = LVCMOS18;# 
+NET "btn<2>" LOC="A3"| IOSTANDARD = LVCMOS18;# 
+NET "btn<3>" LOC="AB9" | IOSTANDARD = LVCMOS33;# This used for RESET in some examples
+
+
+#Red Yellow Green LED "meters"
+NET	"gyr<0>"	LOC="R7"	| IOSTANDARD = LVCMOS18;  #LDT2-G green  AKA LD9
+NET	"gyr<1>"	LOC="U6"	| IOSTANDARD = LVCMOS18;  #LDT2-Y Yellow AKA LD10
+NET	"gyr<2>"	LOC="T8"	| IOSTANDARD = LVCMOS18;  #LDT2-R Red    AKA LD11 
+NET	"gyr<3>"	LOC="T7"	| IOSTANDARD = LVCMOS18;  #LDT1-G green  AKA LD12
+NET	"gyr<4>"	LOC="W4"	| IOSTANDARD = LVCMOS18;  #LDT1-Y Yellow AKA LD13
+NET	"gyr<5>"	LOC="U8"	| IOSTANDARD = LVCMOS18;  #LDT1-R Red    AKA LD14
+
+
+####### 12 digit Keypad ######*
+#####rows########
+NET key_row(0) LOC = E4; # row1
+NET key_row(1) LOC = F3; # row2
+NET key_row(2) LOC = G8; # row3
+NET key_row(3) LOC = G7; # row4
+#####columns#####
+NET key_col(0) LOC = H8; # col1
+NET key_col(1) LOC = J7; # col2
+NET key_col(2) LOC = K8; # col3
+NET key_col(3) LOC = K7; # col4
+
+
+#7 Segment display##############
+NET an(5) LOC = P16;  # 7-seg AN0  7SD-C1
+NET an(0) LOC = M17;  # 7-seg AN1  7SD-C2
+NET an(3) LOC = N16;  # 7-seg AN2  7SD-C3
+NET an(4) LOC = P19;  # 7-seg AN3  7SD-C4
+NET an(1) LOC = AA20; # 7-seg AN4  7SD-C5
+NET an(2) LOC = AB21; # 7-seg AN5  7SD-C6
+
+NET seg(0) LOC=AA21;  # 7-seg CA  7SD-AA 
+NET seg(1) LOC=AA22;  # 7-seg CB  7SD-CB
+NET seg(2) LOC=Y22;   # 7-seg CC  7SD-CC
+NET seg(3) LOC=N15;   # 7-seg CD  7SD-CD
+NET seg(4) LOC=AB19;  # 7-seg CE  7SD-CE
+NET seg(5) LOC=P20;   # 7-seg CF  7SD-CF
+NET seg(6) LOC=Y21;   # 7-seg CG  7SD-CG
+NET seg(7) LOC=P15;   # 7-seg DP  7SD-DP
+
+#####Serial port################
+NET RS232_Uart_1_sin LOC = "T19"  |  IOSTANDARD = "LVCMOS33";
+NET RS232_Uart_1_sout LOC = "T20"  |  IOSTANDARD = "LVCMOS33";
+
+#VGA 12 bit, do these need to be 3.3v if using all 4 bits? they drop the lowest bit
+NET	"vga_r<0>"	LOC="T3"	|	IOSTANDARD=LVCMOS18;		#	VGA-R1   1.8K ohm
+NET	"vga_r<1>"	LOC="B2"	|	IOSTANDARD=LVCMOS18;		#	VGA-R2   910 ohm
+NET	"vga_r<2>"	LOC="H3"	|	IOSTANDARD=LVCMOS18;		#	VGA-R3   430 ohm
+NET	"vga_r<3>"	LOC="H4"	|	IOSTANDARD=LVCMOS18;		#	VGA-R4   220 ohm
+NET	"vga_g<0>"	LOC="T4"	|	IOSTANDARD=LVCMOS18;		#	VGA-G1
+NET	"vga_g<1>"	LOC="M6"	|	IOSTANDARD=LVCMOS18;		#	VGA-G2
+NET	"vga_g<2>"	LOC="H6"	|	IOSTANDARD=LVCMOS18;		#	VGA-G3
+NET	"vga_g<3>"	LOC="N6"	|	IOSTANDARD=LVCMOS18;		#	VGA-G4
+NET	"vga_b<0>"	LOC="M8"	|	IOSTANDARD=LVCMOS18;		#	VGA-B1
+NET	"vga_b<1>"	LOC="M7"	|	IOSTANDARD=LVCMOS18;		#	VGA-B2
+NET	"vga_b<6>"	LOC="N7"	|	IOSTANDARD=LVCMOS18;		#	VGA-B3
+NET	"vga_b<7>"	LOC="P7"	|	IOSTANDARD=LVCMOS18;		#	VGA-B4
+NET	"vga_hs"	LOC="V17"	|	IOSTANDARD=LVCMOS33;		#	VGA-HS VSYNC_O
+NET	"vga_vs" 	LOC="V18"	|	IOSTANDARD=LVCMOS33;		#	VGA-VS VSYNC_O
+
+
+##Less used things for beginners------------------------------------------------------------------
+######Small OLED############
+#NET	"oled_dout_pins<0>"	LOC="C8"	|	IOSTANDARD=LVCMOS33;		#	SDIN
+#NET	"oled_dout_pins<1>"	LOC="D7"	|	IOSTANDARD=LVCMOS33;		#	SCLK
+#NET	"oled_dout_pins<2>"	LOC="A8"	|	IOSTANDARD=LVCMOS33;		#	DC
+#NET	"oled_dout_pins<3>"	LOC="B8"	|	IOSTANDARD=LVCMOS33;		#	RES
+#NET	"oled_dout_pins<4>"	LOC="C7"	|	IOSTANDARD=LVCMOS33;		#	VBAT
+#NET	"oled_dout_pins<5>"	LOC="A7"	|	IOSTANDARD=LVCMOS33;		#	VDD
+######End Small OLED############
+#
+######HDMI Output###############
+#NET	"hdmi_TMDS_TX_pin<0>"	LOC="D10"	|	IOSTANDARD=TMDS_33;
+#NET	"hdmi_TMDS_TX_pin<1>"	LOC="C9"	|	IOSTANDARD=TMDS_33;
+#NET	"hdmi_TMDS_TX_pin<2>"	LOC="D9"	|	IOSTANDARD=TMDS_33;
+#NET	"hdmi_TMDS_TX_pin<3>"	LOC="B10"	|	IOSTANDARD=TMDS_33;
+#
+#NET	"hdmi_TMDSB_TX_pin<0>"	LOC="C10"	|	IOSTANDARD=TMDS_33;
+#NET	"hdmi_TMDSB_TX_pin<1>"	LOC="A9"	|	IOSTANDARD=TMDS_33;
+#NET	"hdmi_TMDSB_TX_pin<2>"	LOC="D8"	|	IOSTANDARD=TMDS_33;
+#NET	"hdmi_TMDSB_TX_pin<3>"	LOC="A10"	|	IOSTANDARD=TMDS_33;
+#
+#
+##Memory  EMC SRAM?########################################################
+#NET Generic_Memory_address[0] LOC = "F22"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_address[1] LOC = "F21"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_address[2] LOC = "E22"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_address[3] LOC = "D22"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_address[4] LOC = "D21"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_address[5] LOC = "D19"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_address[6] LOC = "D20"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_address[7] LOC = "E20"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_address[8] LOC = "G17"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_address[9] LOC = "H18"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_address[10] LOC = "H13"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_address[11] LOC = "H12"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_address[12] LOC = "K16"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_address[13] LOC = "L15"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_address[14] LOC = "G15"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_address[15] LOC = "J16"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_address[16] LOC = "H17"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_address[17] LOC = "H16"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_address[18] LOC = "G16"  |  IOSTANDARD = "LVCMOS33";
+#
+#NET Generic_Memory_data[0] LOC = "H21"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_data[1] LOC = "A20"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_data[2] LOC = "A21"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_data[3] LOC = "A19"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_data[4] LOC = "B20"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_data[5] LOC = "C18"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_data[6] LOC = "C19"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_data[7] LOC = "F15"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_data[8] LOC = "F18"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_data[9] LOC = "F17"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_data[10] LOC = "F14"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_data[11] LOC = "F13"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_data[12] LOC = "H14"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_data[13] LOC = "H19"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_data[14] LOC = "H20"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_data[15] LOC = "G20"  |  IOSTANDARD = "LVCMOS33";
+#
+#NET Generic_Memory_ce_n LOC = "G22"  |  IOSTANDARD = "LVCMOS33"; #cs1
+#NET Generic_Memory_oe_n LOC = "F19"  |  IOSTANDARD = "LVCMOS33";
+#NET Generic_Memory_we_n LOC = "F16"  |  IOSTANDARD = "LVCMOS33";
+#
+#NET Generic_External_Memory_Mem_BEN_pin[1] LOC = "F20"  |  IOSTANDARD = "LVCMOS33" | DRIVE = 2 | PULLDOWN;
+#NET Generic_External_Memory_Mem_BEN_pin[0] LOC = "G19"  |  IOSTANDARD = "LVCMOS33" | DRIVE = 2 | PULLDOWN;
+##End Memory  SDRAM or SRAM?####################################################
+#
+#
+#
+##TFT Screen####################################################################
+#NET "tft_ins_pins[0]" LOC ="M18"	|	IOSTANDARD	=	LVCMOS33;	#	TP_DOUT_I
+#NET "tft_ins_pins[1]" LOC ="M19"	|	IOSTANDARD	=	LVCMOS33;	#	TP_BUSY_I
+#NET "tft_ins_pins[2]" LOC ="N20"	|	IOSTANDARD	=	LVCMOS33;	#	TP_PENIRQ_I
+#
+#NET "tft_outs_pins[0]" LOC ="R20"	|	IOSTANDARD	=	LVCMOS33;	#	TFT_R_O
+#NET "tft_outs_pins[1]" LOC ="N19"	|	IOSTANDARD	=	LVCMOS33;
+#NET "tft_outs_pins[2]" LOC ="K19"	|	IOSTANDARD	=	LVCMOS33;
+#NET "tft_outs_pins[3]" LOC ="K20"	|	IOSTANDARD	=	LVCMOS33;
+#NET "tft_outs_pins[4]" LOC ="K18"	|	IOSTANDARD	=	LVCMOS33;
+#NET "tft_outs_pins[5]" LOC ="J19"	|	IOSTANDARD	=	LVCMOS33;
+#NET "tft_outs_pins[6]" LOC ="J17"	|	IOSTANDARD	=	LVCMOS33;
+#NET "tft_outs_pins[7]" LOC ="C20"	|	IOSTANDARD	=	LVCMOS33;
+#
+#NET "tft_outs_pins[8]" LOC ="C22"	|	IOSTANDARD	=	LVCMOS33;	#	TFT_G_O
+#NET "tft_outs_pins[9]" LOC ="B22"	|	IOSTANDARD	=	LVCMOS33;
+#NET "tft_outs_pins[10]" LOC ="B21"	|	IOSTANDARD	=	LVCMOS33;
+#NET "tft_outs_pins[11]" LOC ="H22"	|	IOSTANDARD	=	LVCMOS33;
+#NET "tft_outs_pins[12]" LOC ="K22"	|	IOSTANDARD	=	LVCMOS33;
+#NET "tft_outs_pins[13]" LOC ="L22"	|	IOSTANDARD	=	LVCMOS33;
+#NET "tft_outs_pins[14]" LOC ="M22"	|	IOSTANDARD	=	LVCMOS33;
+#NET "tft_outs_pins[15]" LOC ="M21"	|	IOSTANDARD	=	LVCMOS33;
+#
+#NET "tft_outs_pins[16]" LOC ="N22"	|	IOSTANDARD	=	LVCMOS33;	#	TFT_B_O
+#NET "tft_outs_pins[17]" LOC ="P22"	|	IOSTANDARD	=	LVCMOS33;
+#NET "tft_outs_pins[18]" LOC ="P21"	|	IOSTANDARD	=	LVCMOS33;
+#NET "tft_outs_pins[19]" LOC ="R22"	|	IOSTANDARD	=	LVCMOS33;
+#NET "tft_outs_pins[20]" LOC ="T22"	|	IOSTANDARD	=	LVCMOS33;
+#NET "tft_outs_pins[21]" LOC ="T21"	|	IOSTANDARD	=	LVCMOS33;
+#NET "tft_outs_pins[22]" LOC ="U22"	|	IOSTANDARD	=	LVCMOS33;
+#NET "tft_outs_pins[23]" LOC ="V22"	|	IOSTANDARD	=	LVCMOS33;
+#
+#NET "tft_outs_pins[24]" LOC ="L20"	|	IOSTANDARD	=	LVCMOS33;	#	TFT_CLK_O
+#NET "tft_outs_pins[25]" LOC ="W22"	|	IOSTANDARD	=	LVCMOS33;	#	TFT_DE_O
+#NET "tft_outs_pins[26]" LOC ="M16"	|	IOSTANDARD	=	LVCMOS33;   # Schematic name: LED-EN		#	TFT_BKLT_O
+#NET "tft_outs_pins[27]" LOC ="W20"	|	IOSTANDARD	=	LVCMOS33;   # Schematic name: TFT-EN		#	TFT_VDDEN_O
+#NET "tft_outs_pins[28]" LOC ="V21"	|	IOSTANDARD	=	LVCMOS33;	#	TFT_DISP_O
+#NET "tft_outs_pins[29]" LOC ="M20"	|	IOSTANDARD	=	LVCMOS33;	#	TP_CS_O
+#NET "tft_outs_pins[30]" LOC ="U20"	|	IOSTANDARD	=	LVCMOS33;	#	TP_DIN_O
+#NET "tft_outs_pins[31]" LOC ="K21"	|	IOSTANDARD	=	LVCMOS33;	#	TP_DCLK_O
+##End TFT Screen###################################################
+#
+##Ethernet interface ##############################################
+#NET	"rmii_ref_clk"	LOC=C12  |  IOSTANDARD=LVCMOS33;
+#NET	"ether_PHY_MDC_pin"	LOC="C15"	|	IOSTANDARD=LVCMOS33;
+#NET	"ether_PHY_MDIO_pin"	LOC="A14"	|	IOSTANDARD=LVCMOS33;
+#NET	"rmii_Rmii2Phy_tx_en_pin"	LOC="D15"	|	IOSTANDARD=LVCMOS33;
+#NET	"rmii_Rmii2Phy_txd_pin<0>"	LOC="E10"	|	IOSTANDARD=LVCMOS33;
+#NET	"rmii_Rmii2Phy_txd_pin<1>"	LOC="F10"	|	IOSTANDARD=LVCMOS33;
+#NET	"rmii_Phy2Rmii_crs_dv_pin"	LOC="B14"	|	IOSTANDARD=LVCMOS33;
+#NET	"rmii_Phy2Rmii_rx_er_pin"	LOC="A13"	|	IOSTANDARD=LVCMOS33;
+#NET	"rmii_Phy2Rmii_rxd_pin<0>"	LOC="C13"	|	IOSTANDARD=LVCMOS33;
+#NET	"rmii_Phy2Rmii_rxd_pin<1>"	LOC="C14"	|	IOSTANDARD=LVCMOS33;
+##End Ethernet interface ##########################################
+#
